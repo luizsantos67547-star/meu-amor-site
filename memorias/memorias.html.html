@@ -86,7 +86,7 @@ section{
   margin:0 auto 50px;
   display:flex;
   align-items:center;
-  gap:18px
+  gap:clamp(10px,2.5vw,24px)
 }
 
 .flag{
@@ -95,71 +95,106 @@ section{
 }
 
 .flight-line{
-  height:4px;
+  height:clamp(112px,16vw,160px);
   flex:1;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #d98a99 0 10px,
-      transparent 10px 20px
-    );
-  position:relative
+  position:relative;
+  isolation:isolate
+}
+
+.flight-route{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:visible;
+  pointer-events:none
+}
+
+.flight-route-base,
+.flight-route-trace{
+  fill:none;
+  stroke-linecap:round;
+  vector-effect:non-scaling-stroke
+}
+
+.flight-route-base{
+  stroke:#e8c6cc;
+  stroke-width:2;
+  stroke-dasharray:2 7
+}
+
+.flight-route-trace{
+  stroke:var(--rose);
+  stroke-width:2.5;
+  stroke-dasharray:1;
+  stroke-dashoffset:1
 }
 
 .plane{
   position:absolute;
-  left:0;
-  top:50%;
-  transform:
-    translate(-50%,-50%)
-    rotate(8deg);
-  font-size:clamp(2.3rem,5vw,3.7rem);
+  z-index:2;
+  left:1%;
+  top:82%;
+  display:grid;
+  place-items:center;
+  width:54px;
+  height:54px;
+  padding:12px;
+  border:1px solid #f0dce0;
+  border-radius:50%;
+  background:rgba(255,255,255,.96);
+  color:var(--rose);
   cursor:pointer;
-  filter:drop-shadow(0 8px 10px #0002);
-  transition:transform .2s
+  transform:translate(-50%,-50%);
+  box-shadow:0 8px 24px #713b471c,0 0 0 7px #fff8;
+  transition:box-shadow .25s,background .25s
+}
+
+.plane svg{
+  display:block;
+  width:100%;
+  height:100%;
+  overflow:visible
+}
+
+.plane svg path{
+  fill:currentColor
 }
 
 .plane:hover{
-  transform:
-    translate(-50%,-50%)
-    rotate(8deg)
-    scale(1.12)
+  background:#fff;
+  box-shadow:0 10px 28px #713b4730,0 0 0 9px #fff9
 }
 
 .plane.flying{
   animation:
     flyBrazil
-    3.8s
-    cubic-bezier(.2,.8,.2,1)
+    4.2s
+    cubic-bezier(.45,0,.2,1)
     forwards
 }
 
 @keyframes flyBrazil{
+  0%{left:1%;top:82%;transform:translate(-50%,-50%) rotate(0) scale(.92)}
+  20%{left:20%;top:77%;transform:translate(-50%,-50%) rotate(-8deg) scale(1.02)}
+  42%{left:40%;top:43%;transform:translate(-50%,-50%) rotate(-31deg) scale(1.08)}
+  55%{left:55%;top:24%;transform:translate(-50%,-50%) rotate(-4deg) scale(1.12)}
+  78%{left:79%;top:70%;transform:translate(-50%,-50%) rotate(22deg) scale(1.04)}
+  100%{left:99%;top:82%;transform:translate(-50%,-50%) rotate(0) scale(.92)}
+}
 
-  0%{
-    left:0;
-    transform:
-      translate(-50%,-50%)
-      rotate(8deg)
-  }
+.flight-line.is-flying .flight-route-trace{
+  animation:drawFlightPath 3.55s .15s ease-out forwards
+}
 
-  45%{
-    top:-55px;
-    transform:
-      translate(-50%,-50%)
-      rotate(3deg)
-      scale(1.15)
-  }
+@keyframes drawFlightPath{
+  to{stroke-dashoffset:0}
+}
 
-  100%{
-    left:100%;
-    top:50%;
-    transform:
-      translate(-50%,-50%)
-      rotate(-8deg)
-      scale(1)
-  }
-
+@media(max-width:560px){
+  .route{gap:8px;margin-bottom:34px}
+  .plane{width:46px;height:46px;padding:10px}
+  .flight-line{height:112px}
 }
 
 
@@ -185,12 +220,14 @@ section{
   overflow:hidden;
   font-weight:800;
   color:var(--rose);
-  transition:.5s
+  transform:translateY(8px);
+  transition:opacity .45s,transform .45s,height .45s
 }
 
 .loading.show{
   opacity:1;
-  height:35px
+  height:35px;
+  transform:translateY(0)
 }
 
 .loading span{
@@ -521,12 +558,23 @@ footer{
 
   <div class="flight-line">
 
-    <span
+    <svg class="flight-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <path class="flight-route-base" pathLength="1" d="M1 82 C26 82 27 23 50 22 S74 82 99 82" />
+      <path class="flight-route-trace" pathLength="1" d="M1 82 C26 82 27 23 50 22 S74 82 99 82" />
+    </svg>
+
+    <button
       class="plane"
       id="plane"
+      type="button"
       onclick="startJourney()"
-      title="Clique no avião"
-    >✈️</span>
+      aria-label="Iniciar a viagem de Portugal ao Brasil"
+      title="Iniciar a viagem"
+    >
+      <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <path d="M59 32 38 37 30 57 25 57 27 36 13 34 7 41 3 40 7 32 3 24 7 23 13 30 27 28 25 7 30 7 38 27Z" />
+      </svg>
+    </button>
 
   </div>
 
@@ -1366,6 +1414,11 @@ function startJourney(){
       "loading"
     );
 
+  const route =
+    document.querySelector(
+      ".flight-line"
+    );
+
 
   if(
     plane.classList.contains(
@@ -1380,6 +1433,10 @@ function startJourney(){
 
   plane.classList.add(
     "flying"
+  );
+
+  route.classList.add(
+    "is-flying"
   );
 
 
@@ -1401,7 +1458,7 @@ function startJourney(){
         behavior:"smooth"
       });
 
-  },3900);
+  },4300);
 
 }
 
