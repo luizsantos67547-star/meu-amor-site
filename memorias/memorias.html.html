@@ -128,7 +128,8 @@ section{
   stroke:var(--rose);
   stroke-width:2.5;
   stroke-dasharray:1;
-  stroke-dashoffset:1
+  stroke-dashoffset:1;
+  opacity:0
 }
 
 .plane{
@@ -189,7 +190,7 @@ section{
 }
 
 @keyframes drawFlightPath{
-  to{stroke-dashoffset:0}
+  to{stroke-dashoffset:0;opacity:1}
 }
 
 @media(max-width:560px){
