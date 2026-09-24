@@ -1,0 +1,1524 @@
+
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Memorias com minha princesa ❤️</title>
+
+<style>
+
+:root{
+  --bg:#fff8f7;
+  --ink:#2d2426;
+  --pink:#e98b9b;
+  --rose:#c85d73;
+  --card:#fff;
+  --muted:#806d72
+}
+
+*{
+  box-sizing:border-box
+}
+
+html{
+  scroll-behavior:smooth
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(
+      circle at 20% 0%,
+      #ffe3e8,
+      transparent 35%
+    ),
+    var(--bg);
+  color:var(--ink);
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif
+}
+
+section{
+  min-height:100vh;
+  padding:80px 20px;
+  display:grid;
+  place-items:center
+}
+
+.wrap{
+  width:min(1050px,100%);
+  text-align:center
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero h1{
+  font-size:clamp(3rem,9vw,7rem);
+  line-height:.9;
+  margin:0 0 22px;
+  letter-spacing:-.07em
+}
+
+.hero p{
+  font-size:clamp(1.1rem,2.5vw,1.5rem);
+  color:var(--muted);
+  max-width:650px;
+  margin:0 auto 30px
+}
+
+
+/* =========================
+   VIAGEM
+========================= */
+
+.route{
+  width:min(900px,90vw);
+  margin:0 auto 50px;
+  display:flex;
+  align-items:center;
+  gap:18px
+}
+
+.flag{
+  font-size:clamp(2.2rem,6vw,4rem);
+  filter:drop-shadow(0 8px 12px #0001)
+}
+
+.flight-line{
+  height:4px;
+  flex:1;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #d98a99 0 10px,
+      transparent 10px 20px
+    );
+  position:relative
+}
+
+.plane{
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:
+    translate(-50%,-50%)
+    rotate(8deg);
+  font-size:clamp(2.3rem,5vw,3.7rem);
+  cursor:pointer;
+  filter:drop-shadow(0 8px 10px #0002);
+  transition:transform .2s
+}
+
+.plane:hover{
+  transform:
+    translate(-50%,-50%)
+    rotate(8deg)
+    scale(1.12)
+}
+
+.plane.flying{
+  animation:
+    flyBrazil
+    3.8s
+    cubic-bezier(.2,.8,.2,1)
+    forwards
+}
+
+@keyframes flyBrazil{
+
+  0%{
+    left:0;
+    transform:
+      translate(-50%,-50%)
+      rotate(8deg)
+  }
+
+  45%{
+    top:-55px;
+    transform:
+      translate(-50%,-50%)
+      rotate(3deg)
+      scale(1.15)
+  }
+
+  100%{
+    left:100%;
+    top:50%;
+    transform:
+      translate(-50%,-50%)
+      rotate(-8deg)
+      scale(1)
+  }
+
+}
+
+
+/* =========================
+   CONTEÚDO INICIAL
+========================= */
+
+.start-content{
+  transition:
+    opacity .5s,
+    transform .5s
+}
+
+.start-content.hidden{
+  opacity:0;
+  transform:translateY(20px);
+  pointer-events:none
+}
+
+.loading{
+  opacity:0;
+  height:0;
+  overflow:hidden;
+  font-weight:800;
+  color:var(--rose);
+  transition:.5s
+}
+
+.loading.show{
+  opacity:1;
+  height:35px
+}
+
+.loading span{
+  margin-left:8px
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+.btn{
+  display:inline-block;
+  border:0;
+  background:var(--rose);
+  color:white;
+  padding:14px 22px;
+  border-radius:999px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 10px 30px #c85d7330;
+  transition:.25s;
+  text-decoration:none
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  filter:brightness(1.05)
+}
+
+
+/* =========================
+   CORAÇÃO
+========================= */
+
+.heart{
+  font-size:4rem;
+  animation:pulse 1.6s infinite
+}
+
+@keyframes pulse{
+
+  50%{
+    transform:scale(1.12)
+  }
+
+}
+
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s
+}
+
+.reveal.show{
+  opacity:1;
+  transform:none
+}
+
+
+/* =========================
+   TÍTULOS
+========================= */
+
+h2{
+  font-size:clamp(2rem,5vw,4rem);
+  margin:0 0 12px
+}
+
+.sub{
+  color:var(--muted);
+  margin-bottom:35px
+}
+
+
+/* =========================
+   GALERIA
+========================= */
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px
+}
+
+.media{
+  aspect-ratio:1;
+  border-radius:22px;
+  overflow:hidden;
+  background:#eadcdf;
+  box-shadow:0 15px 35px #4d263012
+}
+
+.media img,
+.media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
+}
+
+.media.big{
+  grid-column:span 2;
+  grid-row:span 2
+}
+
+
+/* =========================
+   MOMENTOS
+========================= */
+
+.timeline{
+  display:grid;
+  gap:15px;
+  text-align:left;
+  max-width:720px;
+  margin:auto
+}
+
+.moment{
+  background:var(--card);
+  padding:22px;
+  border-radius:20px;
+  border:1px solid #efdce0
+}
+
+.moment b{
+  color:var(--rose)
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz{
+  background:white;
+  padding:35px;
+  border-radius:28px;
+  max-width:700px;
+  margin:auto;
+  box-shadow:0 20px 60px #5a283015;
+  position:relative;
+  overflow:hidden
+}
+
+.quiz-progress{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+  color:var(--muted);
+  font-size:.9rem;
+  font-weight:800
+}
+
+.progress-bar{
+  width:100%;
+  height:7px;
+  background:#f4e3e6;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:30px
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:
+    linear-gradient(
+      90deg,
+      var(--pink),
+      var(--rose)
+    );
+  border-radius:20px;
+  transition:width .45s ease
+}
+
+.question{
+  font-size:1.5rem;
+  font-weight:800;
+  margin:0 0 25px
+}
+
+.answers{
+  display:grid;
+  gap:12px
+}
+
+.answer{
+  padding:15px 18px;
+  border:2px solid #f0dce0;
+  background:white;
+  border-radius:15px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:1rem;
+  text-align:left;
+  transition:
+    transform .2s,
+    background .2s,
+    border-color .2s
+}
+
+.answer:hover:not(:disabled){
+  background:#fff0f3;
+  transform:translateY(-2px)
+}
+
+.answer:disabled{
+  cursor:default
+}
+
+.answer.correct{
+  border-color:#73b98b;
+  background:#eaf8ef
+}
+
+.answer.wrong{
+  border-color:#d87979;
+  background:#fff0f0
+}
+
+.result{
+  min-height:28px;
+  margin-top:18px;
+  font-weight:800;
+  color:var(--rose)
+}
+
+.quiz-final{
+  animation:quizFinal .6s ease forwards
+}
+
+@keyframes quizFinal{
+
+  from{
+    opacity:0;
+    transform:
+      translateY(20px)
+      scale(.97)
+  }
+
+  to{
+    opacity:1;
+    transform:none
+  }
+
+}
+
+.score-heart{
+  font-size:4rem;
+  animation:pulse 1.5s infinite
+}
+
+.score{
+  font-size:3.5rem;
+  font-weight:900;
+  color:var(--rose);
+  margin:10px 0
+}
+
+.score-message{
+  color:var(--muted);
+  font-size:1.1rem;
+  margin-bottom:25px
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:40px 20px;
+  text-align:center;
+  color:var(--muted)
+}
+
+.small{
+  font-size:.9rem
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+  .gallery{
+    grid-template-columns:1fr 1fr
+  }
+
+  .media.big{
+    grid-column:span 2
+  }
+
+  .hero h1{
+    font-size:3.5rem
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     INÍCIO
+========================= -->
+
+<section class="hero" id="inicio">
+
+<div class="wrap">
+
+<div class="route">
+
+  <div class="flag">🇵🇹</div>
+
+  <div class="flight-line">
+
+    <span
+      class="plane"
+      id="plane"
+      onclick="startJourney()"
+      title="Clique no avião"
+    >✈️</span>
+
+  </div>
+
+  <div class="flag">🇧🇷</div>
+
+</div>
+
+
+<div id="startContent" class="start-content">
+
+  <div class="heart">
+    ❤️
+  </div>
+
+  <h1>
+    Memórias<br>
+    com minha Princesa.
+  </h1>
+
+  <button
+    class="btn"
+    onclick="startJourney()"
+  >
+    ✈️ Embarcar
+  </button>
+
+</div>
+
+
+<div id="loading" class="loading">
+
+  Preparando o voo...
+
+  <span>
+    🇵🇹 → 🇧🇷
+  </span>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     MEMÓRIAS
+========================= -->
+
+<section id="memorias">
+
+<div class="wrap reveal">
+
+<h2>
+  Nossas memórias
+</h2>
+
+<p class="sub">
+  Memorias do senhor minhoco e da minhoca linda.
+</p>
+
+
+<div class="gallery">
+
+  <div class="media big">
+    <img
+      data-foto="foto1"
+      alt="Nossa foto 1"
+    >
+  </div>
+
+  <div class="media">
+    <img
+      data-foto="foto2"
+      alt="Nossa foto 2"
+    >
+  </div>
+
+  <div class="media">
+    <img
+      data-foto="foto3"
+      alt="Nossa foto 3"
+    >
+  </div>
+
+  <div class="media">
+    <img
+      data-foto="foto4"
+      alt="Nossa foto 4"
+    >
+  </div>
+
+  <div class="media">
+
+    <video
+      controls
+      poster="foto5.jpg"
+    >
+
+      <source
+        src="video1.mp4"
+        type="video/mp4"
+      >
+
+    </video>
+
+  </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     MOMENTOS
+========================= -->
+
+<section>
+
+<div class="wrap reveal">
+
+<h2>
+  Pequenas coisas que são nossas
+</h2>
+
+<p class="sub">
+  Porque relacionamento também é feito de momentos aleatórios.
+</p>
+
+
+<div class="timeline">
+
+
+<div class="moment">
+
+  <b>
+    01 — Aquele beijo estranho
+  </b>
+
+  <br>
+
+  Muito legal beijar e assoprar dentro da sua bocakkkk.
+
+</div>
+
+
+<div class="moment">
+
+  <b>
+    02 — Naquele dia
+  </b>
+
+  <br>
+
+  Se lembra no tempo da escola quando voçê não gostava de mim? kkkkk.
+
+</div>
+
+
+<div class="moment">
+
+  <b>
+    03 — Mesmo estando longe
+  </b>
+
+  <br>
+
+  Portugal → Brasil.
+  Dois países, muita saudade e uma quantidade suspeita de chamadas de vídeokkkk.
+
+</div>
+
+
+<div class="moment">
+
+  <b>
+    04 — Futuro juntos
+  </b>
+
+  <br>
+
+  Espero continuar dividindo minha vida com voçê❤️
+  de preferencia voçê tem que querer o mesmo.
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     QUIZ
+========================= -->
+
+<section>
+
+<div class="wrap reveal">
+
+<h2>
+  Quizz sobre nós 🧠
+</h2>
+
+<p class="sub">
+  Perguntas extremamente importantes para a ciência.
+</p>
+
+
+<div class="quiz">
+
+
+<div class="quiz-progress">
+
+  <span id="questionNumber">
+    Pergunta 1 de 8
+  </span>
+
+  <span id="scoreLive">
+    ❤️ 0
+  </span>
+
+</div>
+
+
+<div class="progress-bar">
+
+  <div
+    class="progress-fill"
+    id="progressFill"
+  ></div>
+
+</div>
+
+
+<div id="quizContent">
+
+  <p
+    class="question"
+    id="question"
+  ></p>
+
+
+  <div
+    class="answers"
+    id="answers"
+  ></div>
+
+
+  <div
+    class="result"
+    id="result"
+  ></div>
+
+
+  <button
+    class="btn"
+    id="next"
+    style="display:none;margin-top:20px"
+  >
+    Próxima pergunta ❤️
+  </button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section>
+
+<div class="wrap reveal">
+
+<h2>
+  Uma última coisa...
+</h2>
+
+<p
+  class="sub"
+  style="font-size:1.35rem"
+>
+  Mesmo com um oceano no meio,
+  você continua sendo meu lugar favorito. ❤️
+</p>
+
+
+<a
+  class="btn"
+  href="../loja.html"
+>
+  Aperta aqui
+</a>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+Feito com saudade, carinho e um pouquinho de HTML.
+🇵🇹 ❤️ 🇧🇷
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+   PERGUNTAS
+========================= */
+
+const questions = [
+
+{
+  q:"Quem não pode ficar sem comer woods por muito tempo?",
+  a:[
+    "Eu",
+    "Você",
+    "Os dois"
+  ],
+  c:1
+},
+
+{
+  q:"Quem demora mais para escolher o que assistir?",
+  a:[
+    "Eu, obviamente",
+    "Você",
+    "A gente desiste e fica no TikTok"
+  ],
+  c:2
+},
+
+{
+  q:"Qual é a distância entre Portugal e Brasil?",
+  a:[
+    "Pouco demais",
+    "Perto o suficiente para a saudade doer",
+    "3 minutos de Uber"
+  ],
+  c:1
+},
+
+{
+  q:"Quem é mais chato/a?",
+  a:[
+    "Eu",
+    "Você",
+    "Pergunta perigosa. Próxima."
+  ],
+  c:2
+},
+
+{
+  q:"O que eu mais quero quando você estiver aqui?",
+  a:[
+    "Um abraço",
+    "Ficar pertinho de você",
+    "As duas anteriores, caralho"
+  ],
+  c:2
+},
+
+{
+  q:"Quem puxa o lençol todo qunado ta dormindo?",
+  a:[
+    "Eu",
+    "Você",
+    "O rei do meinho"
+  ],
+  c:2
+},
+
+{
+  q:"Quem sempre julga o gosto pessoal dos outros?",
+  a:[
+    "voçê",
+    "lou",
+    "larissa fernanda"
+  ],
+  c:2
+
+
+},
+
+{
+  q:"Quem é a mulher mais linda e mais importante da minha vida?",
+  a:[
+    "minha princesa",
+    "minha piu",
+    "Todas as anteriores"
+  ],
+  c:2
+
+
+
+}
+
+];
+
+
+let qi = 0;
+
+let score = 0;
+
+
+/* =========================
+   ELEMENTOS DO QUIZ
+========================= */
+
+let question =
+  document.getElementById("question");
+
+let answers =
+  document.getElementById("answers");
+
+let result =
+  document.getElementById("result");
+
+let next =
+  document.getElementById("next");
+
+let questionNumber =
+  document.getElementById("questionNumber");
+
+let scoreLive =
+  document.getElementById("scoreLive");
+
+let progressFill =
+  document.getElementById("progressFill");
+
+let quizContent =
+  document.getElementById("quizContent");
+
+
+/* =========================
+   MOSTRAR PERGUNTA
+========================= */
+
+function render(){
+
+  const x =
+    questions[qi];
+
+
+  question.textContent =
+    x.q;
+
+
+  result.textContent =
+    "";
+
+
+  next.style.display =
+    "none";
+
+
+  answers.innerHTML =
+    "";
+
+
+  questionNumber.textContent =
+    `Pergunta ${qi + 1} de ${questions.length}`;
+
+
+  const progress =
+    (qi / questions.length) * 100;
+
+
+  progressFill.style.width =
+    `${progress}%`;
+
+
+  scoreLive.textContent =
+    `❤️ ${score}`;
+
+
+  x.a.forEach((text,index)=>{
+
+    const button =
+      document.createElement("button");
+
+
+    button.className =
+      "answer";
+
+
+    button.textContent =
+      text;
+
+
+    button.onclick = ()=>{
+
+      /* impede escolher outra resposta */
+
+      [
+        ...answers.children
+      ].forEach(btn=>{
+        btn.disabled = true;
+      });
+
+
+      /* acertou */
+
+      if(index === x.c){
+
+        score++;
+
+        button.classList.add(
+          "correct"
+        );
+
+        result.textContent =
+          "Acertou, amoreculos! ❤️";
+
+      }
+
+
+      /* errou */
+
+      else{
+
+        button.classList.add(
+          "wrong"
+        );
+
+
+        [
+          ...answers.children
+        ][x.c]
+        .classList.add(
+          "correct"
+        );
+
+
+        result.textContent =
+          `Errou BB bura A resposta era: ${x.a[x.c]}`;
+
+      }
+
+
+      scoreLive.textContent =
+        `❤️ ${score}`;
+
+
+      if(
+        qi ===
+        questions.length - 1
+      ){
+
+        next.textContent =
+          "Ver meu resultado ❤️";
+
+      }
+
+      else{
+
+        next.textContent =
+          "Próxima pergunta →";
+
+      }
+
+
+      next.style.display =
+        "inline-block";
+
+    };
+
+
+    answers.appendChild(
+      button
+    );
+
+  });
+
+}
+
+
+/* =========================
+   PRÓXIMA PERGUNTA
+========================= */
+
+next.onclick = ()=>{
+
+  if(
+    qi ===
+    questions.length - 1
+  ){
+
+    showFinal();
+
+    return;
+
+  }
+
+
+  qi++;
+
+  render();
+
+};
+
+
+/* =========================
+   RESULTADO FINAL
+========================= */
+
+function showFinal(){
+
+  progressFill.style.width =
+    "100%";
+
+
+  questionNumber.textContent =
+    "Quiz terminado ❤️";
+
+
+  scoreLive.textContent =
+    `❤️ ${score}`;
+
+
+  let message;
+
+
+  if(
+    score ===
+    questions.length
+  ){
+
+    message =
+      "duvido muito ter acertado tudo de primeira. ❤️";
+
+  }
+
+  else if(score >= 6){
+
+    message =
+      "Muito bem, Você conhece bastante o Sr. minhoco. ";
+
+  }
+
+  else if(score >= 4){
+
+    message =
+      "Foi quase piu, tenta denovo ai";
+
+  }
+
+  else if(score >= 2){
+
+    message =
+      "que vergonha amor, só acertou isso";
+
+  }
+
+  else{
+
+    message =
+      "Vamos terminar. ";
+
+  }
+
+
+  quizContent.innerHTML = `
+
+    <div class="quiz-final">
+
+      <div class="score-heart">
+        ❤️
+      </div>
+
+      <h3
+        style="
+          font-size:1.8rem;
+          margin:10px 0;
+        "
+      >
+        Resultado do nosso quiz
+      </h3>
+
+      <div class="score">
+        ${score}/${questions.length}
+      </div>
+
+      <p class="score-message">
+        ${message}
+      </p>
+
+      <button
+        class="btn"
+        onclick="restartQuiz()"
+      >
+        🔄 Fazer de novo
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   RECOMEÇAR
+========================= */
+
+function restartQuiz(){
+
+  qi = 0;
+
+  score = 0;
+
+
+  quizContent.innerHTML = `
+
+    <p
+      class="question"
+      id="question"
+    ></p>
+
+    <div
+      class="answers"
+      id="answers"
+    ></div>
+
+    <div
+      class="result"
+      id="result"
+    ></div>
+
+    <button
+      class="btn"
+      id="next"
+      style="display:none;margin-top:20px"
+    >
+      Próxima pergunta ❤️
+    </button>
+
+  `;
+
+
+  question =
+    document.getElementById(
+      "question"
+    );
+
+
+  answers =
+    document.getElementById(
+      "answers"
+    );
+
+
+  result =
+    document.getElementById(
+      "result"
+    );
+
+
+  next =
+    document.getElementById(
+      "next"
+    );
+
+
+  next.onclick = ()=>{
+
+    if(
+      qi ===
+      questions.length - 1
+    ){
+
+      showFinal();
+
+      return;
+
+    }
+
+
+    qi++;
+
+    render();
+
+  };
+
+
+  render();
+
+}
+
+
+/* inicia */
+
+render();
+
+
+
+/* =========================
+   AVIÃO
+========================= */
+
+function startJourney(){
+
+  const plane =
+    document.getElementById(
+      "plane"
+    );
+
+
+  const content =
+    document.getElementById(
+      "startContent"
+    );
+
+
+  const loading =
+    document.getElementById(
+      "loading"
+    );
+
+
+  if(
+    plane.classList.contains(
+      "flying"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  plane.classList.add(
+    "flying"
+  );
+
+
+  content.classList.add(
+    "hidden"
+  );
+
+
+  loading.classList.add(
+    "show"
+  );
+
+
+  setTimeout(()=>{
+
+    document
+      .querySelector("#memorias")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+  },3900);
+
+}
+
+
+
+/* =========================
+   ANIMAÇÃO AO DESCER
+========================= */
+
+const obs =
+  new IntersectionObserver(
+
+    es=>es.forEach(e=>{
+
+      if(
+        e.isIntersecting
+      ){
+
+        e.target.classList.add(
+          "show"
+        );
+
+      }
+
+    }),
+
+    {
+      threshold:.15
+    }
+
+  );
+
+
+document
+  .querySelectorAll(".reveal")
+  .forEach(e=>{
+    obs.observe(e);
+  });
+
+
+
+/* =========================
+   FOTOS
+========================= */
+
+const extensoesDeImagem = [
+  "jpg",
+  "jpeg",
+  "png",
+  "webp"
+];
+
+
+document
+  .querySelectorAll(
+    "img[data-foto]"
+  )
+  .forEach(img=>{
+
+    const nome =
+      img.dataset.foto;
+
+
+    let indice = 0;
+
+
+    function tentarProximaExtensao(){
+
+      if(
+        indice >=
+        extensoesDeImagem.length
+      ){
+
+        img.alt =
+          `${nome} não encontrada`;
+
+        return;
+
+      }
+
+
+      const caminho =
+        `./${nome}.${extensoesDeImagem[indice]}`;
+
+
+      const teste =
+        new Image();
+
+
+      teste.onload = ()=>{
+        img.src =
+          caminho;
+      };
+
+
+      teste.onerror = ()=>{
+
+        indice++;
+
+        tentarProximaExtensao();
+
+      };
+
+
+      teste.src =
+        caminho;
+
+    }
+
+
+    tentarProximaExtensao();
+
+  });
+
+</script>
+
+</body>
+</html>
+```
+
